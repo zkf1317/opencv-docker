@@ -68,4 +68,4 @@ RUN cd /opt/ &&\
     rm -rf /opt/opencv-${OPENCV_VERSION} && rm -rf /opt/opencv_contrib-${OPENCV_VERSION}
 
 # opencv-python
-RUN pip install -y opencv-python==4.10.0.84
+RUN pip install opencv-python==4.10.0.84
