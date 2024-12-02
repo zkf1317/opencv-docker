@@ -14,7 +14,7 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y \
 	    python3-pip \
         build-essential \
-        cmake=3.26.* \
+        cmake \
         git \
         wget \
         unzip \
