@@ -6,7 +6,7 @@ ARG OPENCV_VERSION=4.10.0
 # apt install
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y wget && \
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add - \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add - \
     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 
 RUN apt-get update && apt-get upgrade -y && \
