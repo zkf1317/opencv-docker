@@ -4,7 +4,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG OPENCV_VERSION=4.10.0
 
 # apt install
-RUN apt-get update && apt-get upgrade -y &&\
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y wget gnupg2 apt-utils software-properties-common && \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add - && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+
+RUN apt-get update && apt-get upgrade -y && \
     # Install build tools, build dependencies and python
     apt-get install -y \
 	    python3-pip \
@@ -44,18 +49,24 @@ RUN apt-get update && apt-get upgrade -y &&\
 # opencv
 RUN cd /opt/ &&\
     # Download and unzip OpenCV and opencv_contrib and delte zip files
-    wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip &&\
-    unzip $OPENCV_VERSION.zip &&\
-    rm $OPENCV_VERSION.zip &&\
-    wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip &&\
-    unzip ${OPENCV_VERSION}.zip &&\
-    rm ${OPENCV_VERSION}.zip &&\
+    wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
+    unzip $OPENCV_VERSION.zip && \
+    rm $OPENCV_VERSION.zip && \
+    wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip && \
+    unzip ${OPENCV_VERSION}.zip && \
+    rm ${OPENCV_VERSION}.zip && \
     # Create build folder and switch to it
-    mkdir /opt/opencv-${OPENCV_VERSION}/build && cd /opt/opencv-${OPENCV_VERSION}/build &&\
+    mkdir /opt/opencv-${OPENCV_VERSION}/build && cd /opt/opencv-${OPENCV_VERSION}/build && \
     # Cmake configure
     cmake \
         -DOPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-${OPENCV_VERSION}/modules \
         -DWITH_CUDA=ON \
+        -D WITH_CUDNN=ON \
+        -D ENABLE_CXX11=ON \
+        -D WITH_OPENGL=ON \
+        -D WITH_GSTREAMER=ON \
+        -D WITH_TIFF=ON \
+        -D WITH_JPEG=ON \
         -DCUDA_ARCH_BIN=7.5,8.0,8.6 \
         -DCMAKE_BUILD_TYPE=RELEASE \
         # Install path will be /usr/local/lib (lib is implicit)
@@ -65,7 +76,7 @@ RUN cd /opt/ &&\
     make -j"$(nproc)" && \
     # Install to /usr/local/lib
     make install && \
-    ldconfig &&\
+    ldconfig && \
     # Remove OpenCV sources and build folder
     rm -rf /opt/opencv-${OPENCV_VERSION} && rm -rf /opt/opencv_contrib-${OPENCV_VERSION}
 
