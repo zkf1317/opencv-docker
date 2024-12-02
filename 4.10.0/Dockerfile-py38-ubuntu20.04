@@ -47,7 +47,7 @@ RUN apt-get update && apt-get upgrade -y && \
     && rm -rf /var/lib/apt/lists/*
 
 # opencv
-RUN cd /opt/ &&\
+RUN cd /opt/ && \
     # Download and unzip OpenCV and opencv_contrib and delte zip files
     wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
     unzip $OPENCV_VERSION.zip && \
