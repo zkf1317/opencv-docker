@@ -20,7 +20,13 @@ docker build . -f Dockerfile-4.10.0-py38-ubuntu20.04 -t opencv:4.10.0-py38-ubunt
 docker build . -f Dockerfile-4.10.0-cu118-py38-ubuntu20.04 -t opencv:4.10.0-cu118-py38-ubuntu20.04
 ```
 
-# Run
+# Test
+## Test opencv python
+``` shell
+docker run -v .:/workspace opencv:4.10.0-py38-ubuntu20.04 /bin/bash -c "cd /workspace && python3 test.py"
+```
+
+## Test opencv c++
 ``` shell
 
 ```
