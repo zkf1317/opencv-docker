@@ -4,12 +4,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG OPENCV_VERSION=4.10.0
 
 # apt install
+RUN apt-get install -y software-properties-common && apt-add-repository ppa:deadsnakes/ppa
+
 RUN apt-get update && apt-get upgrade -y &&\
     # Install build tools, build dependencies and python
     apt-get install -y \
 	    python3-pip \
         build-essential \
-        cmake \
+        cmake=3.26.* \
         git \
         wget \
         unzip \

@@ -22,6 +22,9 @@ docker build . -f Dockerfile-4.10.0-cu118-py38-ubuntu20.04 -t opencv:4.10.0-cu11
 
 # Test
 ## Test opencv python
+
+Test opencv-python, the docker is working correctly if the following is displayed.
+
 ``` shell
 docker run -v .:/workspace opencv:4.10.0-py38-ubuntu20.04 /bin/bash -c "cd /workspace && python3 test.py"
 ```
