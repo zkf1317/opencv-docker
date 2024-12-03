@@ -23,5 +23,11 @@ int main() {
         std::cout << "Image channels: " << channels << std::endl;
     }
 
+    // cuda test
+    int cuda_device_count = cv::cuda::getCudaEnabledDeviceCount();
+    if (cuda_device_count > 0) {
+        std::cout << "CUDA is enabled." << std::endl;
+    }
+
     return 0;
 }

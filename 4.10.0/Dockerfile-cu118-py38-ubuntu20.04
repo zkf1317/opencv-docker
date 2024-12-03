@@ -67,6 +67,7 @@ RUN cd /opt/ && \
         -D WITH_GSTREAMER=ON \
         -D WITH_TIFF=ON \
         -D WITH_JPEG=ON \
+        -D BUILD_opencv_python3=ON \
         -DCUDA_ARCH_BIN=7.5,8.0,8.6 \
         -DCMAKE_BUILD_TYPE=RELEASE \
         # Install path will be /usr/local/lib (lib is implicit)
