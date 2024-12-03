@@ -6,6 +6,12 @@ This repository contains Dockerfiles for creating Docker images of the [OpenCV](
 
 Run the prebuilt docker to take a look
 
+Clone this repo
+``` shell
+git clone https://github.com/zkf1317/opencv-docker.git
+cd opencv-docker
+```
+
 Without CUDA
 ``` shell
 docker run -v .:/workspace zkf1317/opencv:4.10.0-py38-ubuntu20.04 /bin/bash -c "cd /workspace && python3 4.10.0/test.py"
