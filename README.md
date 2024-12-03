@@ -19,8 +19,7 @@ docker run -v .:/workspace zkf1317/opencv:4.10.0-py38-ubuntu20.04 /bin/bash -c "
 
 With CUDA
 ``` shell
-docker run -v .:/workspace zkf1317/opencv:4.10.0-cu118-py38-ubuntu20.04 /bin/bash -c \
-    "cd /workspace && cd 4.10.0 && mkdir build && cd build && cmake .. && make && cd /workspace && 4.10.0/build/opencv_docker_test && rm -rf 4.10.0/build"
+docker run -v .:/workspace zkf1317/opencv:4.10.0-cu118-py38-ubuntu20.04 /bin/bash -c "cd /workspace && python3 4.10.0/test.py"
 ```
 
 # Build
