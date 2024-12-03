@@ -52,3 +52,15 @@ Image width: 640 pixes
 Image height: 424 pixes
 Image channel: 3
 ```
+
+# Test CUDA
+## Test opencv python with cuda
+
+Test opencv-python with cuda
+
+``` shell
+docker run -v .:/workspace opencv:4.10.0-cu118-py38-ubuntu20.04 /bin/bash -c "cd /workspace && python3 4.10.0/test.py"
+```
+
+The docker is working correctly if the following is displayed.
+
